@@ -7,6 +7,7 @@ import {
 import ActionButton from 'react-native-action-button';
 
 import Map from './components/Map';
+import SmsButton from './components/SmsButton';
 
 
 const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
@@ -26,7 +27,7 @@ export default class App extends React.Component<{}> {
     return (
       <View style={styles.container}>
 	      <Map />
-
+				<SmsButton />
       </View>
     );
   }
