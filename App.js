@@ -15,6 +15,7 @@ import {
 } from 'react-native';
 
 import MapView from 'react-native-maps';
+import ActionButton from 'react-native-action-button';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -71,7 +72,10 @@ export default class App extends Component<{}> {
       {this.location && <MapView.Marker coordinate={this.location}/>}
       <MapView.Polygon coordinates={this.singlecord} strokeWidth={4} strokeColor="blue" fillColor="rgba(0,0,255,0.1)"/>
       </MapView>
-      <Button title="Click"/>
+      <ActionButton
+        buttonColor="rgba(231,76,60,1)"
+        onPress={() => { console.log("hi")}}
+      />
       </View>
     );
   }
