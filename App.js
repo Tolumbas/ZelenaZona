@@ -32,16 +32,20 @@ export default class App extends Component<{}> {
         return {latitude:x,longitude:y};
       }
       this.singlecord = [
-        LatLng(42.694757, 23.311979),
+        LatLng(42.698776, 23.334655),
         LatLng(42.6949357, 23.311679),
-        LatLng(42.692757, 23.312679),
+        LatLng(42.692757, 23.322679),
         LatLng(42.692777, 23.311129),
-        LatLng(42.694757, 23.311979),
-      ]
+      ],
+      this.location = null;
+      navigator.geolocation.getCurrentPosition(suc=>{
+        this.location = suc.coords;
+      },fal=>{
+
+      });
   }
   render() {
     return (
-
       <MapView
         initialRegion={{
           latitude: 42.689365,
@@ -51,7 +55,8 @@ export default class App extends Component<{}> {
         }}
         style = {styles.map}
       >
-      <MapView.Polygon coordinates={this.singlecord} strokeWidth={4} strokeColor="green" fillColor="rgba(0,255,0,0.5)"/>
+      {this.location && <MapView.Marker coordinate={this.location}/>}
+      <MapView.Polygon coordinates={this.singlecord} strokeWidth={4} strokeColor="green" fillColor="rgba(0,255,0,0.2)"/>
       </MapView>
     );
   }
