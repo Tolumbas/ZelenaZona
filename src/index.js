@@ -14,11 +14,7 @@ const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
 	container: {
-		position: 'absolute',
-		width: screenWidth,
-		height: screenHeight,
-		top: 0,
-		left: 0
+		...StyleSheet.absoluteFillObject
 	}
 });
 

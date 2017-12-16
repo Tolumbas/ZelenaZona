@@ -14,7 +14,7 @@ export default class SmsButton extends React.Component {
 			<ActionButton
 				fixNativeFeedbackRadius
 				buttonColor="#2196F3"
-				position="center"
+				position="right"
 				onPress={() => SendSMS.send({
 					body: 'The default body of the SMS!',
 					recipients: ['0123456789', '9876543210'],
