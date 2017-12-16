@@ -24,18 +24,35 @@ const instructions = Platform.select({
 
 const {height, width} = Dimensions.get('window');
 
+
 export default class App extends Component<{}> {
+  constructor(){
+      super();
+      function LatLng(x,y){
+        return {latitude:x,longitude:y};
+      }
+      this.singlecord = [
+        LatLng(42.694757, 23.311979),
+        LatLng(42.6942357, 23.311679),
+        LatLng(42.692757, 23.312679),
+        LatLng(42.692777, 23.311129),
+        LatLng(42.694757, 23.311979),
+      ]
+  }
   render() {
     return (
+
       <MapView
         initialRegion={{
-          latitude: 37.78825,
-          longitude: -122.4324,
+          latitude: 42.689365,
+          longitude: 23.321009,
           latitudeDelta: 0.0922,
           longitudeDelta: 0.0421,
         }}
         style = {styles.map}
-      />
+      >
+      <MapView.Polygon coordinates={this.singlecord} strokeWidth={4} strokeColor="green"/>
+      </MapView>
     );
   }
 }
