@@ -5,9 +5,9 @@
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
-		"reload": "adb shell am broadcast -a react.native.RELOAD",
-		"android": "node node_modules/react-native/local-cli/cli.js run-android",
-		"clean": "git clean -fdX",
+    "reload": "adb shell am broadcast -a react.native.RELOAD",
+    "android": "node node_modules/react-native/local-cli/cli.js run-android",
+    "clean": "git clean -fdX",
     "react-devtools": "react-devtools"
   },
   "dependencies": {
