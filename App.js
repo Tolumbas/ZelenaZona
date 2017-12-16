@@ -10,7 +10,8 @@ import {
   StyleSheet,
   Text,
   View,
-  Dimensions
+  Dimensions,
+  Button
 } from 'react-native';
 
 import MapView from 'react-native-maps';
@@ -32,10 +33,21 @@ export default class App extends Component<{}> {
         return {latitude:x,longitude:y};
       }
       this.singlecord = [
-        LatLng(42.698776, 23.334655),
-        LatLng(42.6949357, 23.311679),
-        LatLng(42.692757, 23.322679),
-        LatLng(42.692777, 23.311129),
+        LatLng(42.698724, 23.334771),
+        LatLng(42.696922, 23.335406),
+        LatLng(42.696681, 23.335696),
+        LatLng(42.696425, 23.335374),
+        LatLng(42.692307, 23.334012),
+        LatLng(42.687632, 23.328385),
+        LatLng(42.685908, 23.321280),
+        LatLng(42.686304, 23.318055),
+        LatLng(42.689438, 23.313961),
+        LatLng(42.694819, 23.315242),
+        LatLng(42.697535, 23.315156),
+        LatLng(42.697587, 23.315168),
+        LatLng(42.698890, 23.315578),
+        LatLng(42.697500, 23.323330),
+        LatLng(42.698724, 23.334771),
       ],
       this.location = null;
       navigator.geolocation.getCurrentPosition(suc=>{
@@ -46,6 +58,7 @@ export default class App extends Component<{}> {
   }
   render() {
     return (
+      <View style={styles.container}>
       <MapView
         initialRegion={{
           latitude: 42.689365,
@@ -56,8 +69,10 @@ export default class App extends Component<{}> {
         style = {styles.map}
       >
       {this.location && <MapView.Marker coordinate={this.location}/>}
-      <MapView.Polygon coordinates={this.singlecord} strokeWidth={4} strokeColor="green" fillColor="rgba(0,255,0,0.2)"/>
+      <MapView.Polygon coordinates={this.singlecord} strokeWidth={4} strokeColor="blue" fillColor="rgba(0,0,255,0.1)"/>
       </MapView>
+      <Button title="Click"/>
+      </View>
     );
   }
 }
@@ -65,20 +80,13 @@ export default class App extends Component<{}> {
 const styles = StyleSheet.create({
   container: {
     position: 'absolute',
+    width,
+    height,
     top: 0,
     left: 0,
-    right: 0,
-    bottom: 0,
-    justifyContent: 'flex-end',
-    alignItems: 'center',
   },
   map:{
-
-    position: 'absolute',
-top: 0,
-left: 0,
-right: 0,
-bottom: 0,
+    ...StyleSheet.absoluteFillObject
   },
   welcome: {
     fontSize: 20,
