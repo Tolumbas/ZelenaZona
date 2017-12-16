@@ -16,12 +16,13 @@ const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
 export default class Map extends Component {
 	constructor () {
 			super();
+			this.state = { hackHeight: screenHeight }
 
 			function LatLng (x, y) {
 				return { latitude: x, longitude: y };
 			}
 
-			this.singlecord = [
+			this.SinqZona = [
 				LatLng(42.698724, 23.334771),
 				LatLng(42.696922, 23.335406),
 				LatLng(42.696681, 23.335696),
@@ -47,9 +48,17 @@ export default class Map extends Component {
 
 			});
 	}
+	componentWillMount() {
+			setTimeout( () => this.setState({ hackHeight: screenHeight+1}), 500);
+			setTimeout( () => this.setState({ hackHeight: screenHeight}), 1000);
+	}
 	render () {
 		return (
+			<View style= {{ paddingBottom: this.state.hackHeight }}>
 			<MapView
+					showsUserLocation = {true}
+					followsUserLocation = {true}
+					showsMyLocationButton = {true}
 					initialRegion={{
 						latitude: 42.689365,
 						longitude: 23.321009,
@@ -58,14 +67,14 @@ export default class Map extends Component {
 					}}
 					style={styles.map}
 			>
-				{this.location && <MapView.Marker coordinate={this.location} />}
 				<MapView.Polygon
-					coordinates={this.singlecord}
+					coordinates={this.SinqZona}
 					strokeWidth={4}
 					strokeColor="blue"
 					fillColor="rgba(0,0,255,0.1)"
 				/>
 			</MapView>
+			</View>
 		);
 	}
 }

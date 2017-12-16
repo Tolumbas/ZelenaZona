@@ -26,11 +26,7 @@ export default class App extends React.Component<{}> {
     return (
       <View style={styles.container}>
 	      <Map />
-	      <ActionButton
-					fixNativeFeedbackRadius
-	        buttonColor="rgba(231,76,60,1)"
-	        onPress={() => { console.log("hi")}}
-	      />
+
       </View>
     );
   }
