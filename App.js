@@ -33,7 +33,7 @@ export default class App extends Component<{}> {
       }
       this.singlecord = [
         LatLng(42.694757, 23.311979),
-        LatLng(42.6942357, 23.311679),
+        LatLng(42.6949357, 23.311679),
         LatLng(42.692757, 23.312679),
         LatLng(42.692777, 23.311129),
         LatLng(42.694757, 23.311979),
@@ -51,7 +51,7 @@ export default class App extends Component<{}> {
         }}
         style = {styles.map}
       >
-      <MapView.Polygon coordinates={this.singlecord} strokeWidth={4} strokeColor="green"/>
+      <MapView.Polygon coordinates={this.singlecord} strokeWidth={4} strokeColor="green" fillColor="rgba(0,255,0,0.5)"/>
       </MapView>
     );
   }
