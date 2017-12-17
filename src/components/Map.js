@@ -22,6 +22,11 @@ export default class Map extends Component {
 				return { latitude: x, longitude: y };
 			}
 
+			this.markers={
+				latlng:LatLng(42.698724, 23.334771),
+				text:"FREE"
+			}
+
 			this.SinqZona = [
 				LatLng(42.698724, 23.334771),
 				LatLng(42.696922, 23.335406),
@@ -113,11 +118,13 @@ export default class Map extends Component {
 					LatLng(42.679256, 23.310761 ),
 					LatLng(42.674798, 23.308917 ),
 				],
-				[LatLng(42.684455, 23.301204 ),//ул георги софииски
-					LatLng(42.686208, 23.307786 ),],
-					[
-						LatLng(42.672611, 23.322134 ),//джейм баучер
-					LatLng(42.676108, 23.332992 ),//енд
+				[
+					LatLng(42.684455, 23.301204 ),//ул георги софииски
+					LatLng(42.686208, 23.307786 ),
+				],
+				[
+					LatLng(42.672231, 23.321162),//джейм баучер
+					LatLng(42.670219, 23.313957),//енд
 				],
 				[
 					LatLng(42.665013, 23.317677 ),//никола вапцатов
@@ -141,6 +148,7 @@ export default class Map extends Component {
 		return (
 			<View style= {{ paddingBottom: this.state.hackHeight }}>
 			<MapView
+					showsCompass = {false}
 					showsUserLocation = {true}
 					followsUserLocation = {true}
 					showsMyLocationButton = {true}
@@ -166,14 +174,16 @@ export default class Map extends Component {
 				/>
 				{this.ulici.map((ul, i) =>
           <MapView.Polyline
+						key={i}
 						strokeWidth= {4}
 						strokeColor= "green"
 						coordinates={ul}
 					>
-
           </MapView.Polyline>
         )}
-
+				<MapView.Marker coordinate={this.markers.latlng}>
+					<Text style={styles.text}>{this.markers.text}</Text>
+				</MapView.Marker>
 			</MapView>
 			</View>
 		);
