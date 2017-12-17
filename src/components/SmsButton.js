@@ -14,10 +14,10 @@ export default class SmsButton extends React.Component {
 	sms(zone){
 		var tel;
 		if (zone == "green"){
-			tel = "0000";
+			tel = "1303";
 		}
 		if (zone == "blue"){
-			tel = "0000";
+			tel = "1302";
 		}
 		SendSMS.send({
 			body: 'The default body of the SMS!',
@@ -34,13 +34,20 @@ export default class SmsButton extends React.Component {
 				fixNativeFeedbackRadius
 				buttonColor="#ff4d4d"
 				position="right"
-
-				// onPress={(event) =>
+				icon={<Icon name="md-create" style={styles.icon} />}
 			>
-			<ActionButton.Item buttonColor='#47d147' title="Зелена Зона" onPress={()=>this.sms("green")}>
-				<Icon name="md-text" style={styles.icon} />
-			</ActionButton.Item>
-			<ActionButton.Item buttonColor='#4d94ff' title="Синя зона" onPress={()=>this.sms("blue")}>
+				<ActionButton.Item
+					buttonColor='#47d147'
+					title="Зелена Зона"
+					onPress={() => this.sms("green")}
+				>
+					<Icon name="md-text" style={styles.icon} />
+				</ActionButton.Item>
+				<ActionButton.Item
+					buttonColor='#4d94ff'
+					title="Синя зона"
+					onPress={() => this.sms("blue")}
+				>
 				<Icon name="md-text" style={styles.icon} />
 			</ActionButton.Item>
 
