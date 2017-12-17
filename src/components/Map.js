@@ -21,7 +21,7 @@ const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
 export default class Map extends Component {
 	constructor () {
 			super();
-			this.state = { hackHeight: screenHeight }
+			this.state = { hackHeight: screenHeight, showFreeSpaces: true };
 			this.parking = [];
 
 	//		this.parkingCoords=
@@ -32,9 +32,10 @@ export default class Map extends Component {
 			}
 
 			this.markers={
-				latlng:LatLng(42.698724, 23.334771),
-				text:"FREE"
+				latlng: LatLng(42.698724, 23.334771),
+				text: "FREE"
 			}
+			this.podzoni =
 	//		this.SinqZona =
 	//		this.zelenaZona =
 	//		this.ulici=
@@ -48,8 +49,8 @@ export default class Map extends Component {
 			});
 	}
 	componentWillMount() {
-			setTimeout( () => this.setState({ hackHeight: screenHeight+1}), 500);
-			setTimeout( () => this.setState({ hackHeight: screenHeight}), 1000);
+			setTimeout( () => this.setState({ ...this.state, hackHeight: screenHeight+1}), 500);
+			setTimeout( () => this.setState({ ...this.state, hackHeight: screenHeight}), 1000);
 	}
 	getFreeSpace(){
 		fetch("https://www.sofiatraffic.bg/bg/parkingDiv/",{ method: 'POST' })
@@ -74,8 +75,27 @@ export default class Map extends Component {
 			console.log(this.parking);
 		})
   }
+	checkview({latitudeDelta:x,longitudeDelta:y}){
+		// console.log(x,y,this.state.showFreeSpaces);
+		if (x <  0.0322){
+			this.setState({ ...this.state, showFreeSpaces: true});
+		}
+		else {
+			this.setState({ ...this.state, showFreeSpaces: false});
+		}
+	}
 
 	render () {
+		var kartof = this.parking.map((el,i) => (
+			<MapView.Marker
+				coordinate={el.latlng}
+				key={i}
+			>
+				<Text style={styles.text}>
+					{el.text}
+				</Text>
+			</MapView.Marker>
+		));
 		return (
 			<View style= {{ paddingBottom: this.state.hackHeight }}>
 			<MapView
@@ -83,6 +103,7 @@ export default class Map extends Component {
 					showsUserLocation = {true}
 					followsUserLocation = {true}
 					showsMyLocationButton = {true}
+					onRegionChange = {(event)=>this.checkview(event)}
 					initialRegion={{
 						latitude: 42.689365,
 						longitude: 23.321009,
@@ -112,18 +133,7 @@ export default class Map extends Component {
 					>
           </MapView.Polyline>
         )}
-				{this.parking.map((el,i) => (
-					<MapView.Marker
-						coordinate={el.latlng}
-						key={i}
-					>
-						<Text style={styles.text}>
-							{el.text}
-						</Text>
-					</MapView.Marker>
-				))
-			}
-
+				{this.state.showFreeSpaces && kartof}
 
 			</MapView>
 			</View>
